@@ -1,0 +1,31 @@
+{
+  "name": "compwns",
+  "version": "0.0.1",
+  "description": "compwnents",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "babel components -d dist",
+    "test": "test",
+    "storybook": "start-storybook -p 9001 -c .storybook"
+  },
+  "author": "hattmarris",
+  "license": "MIT",
+  "devDependencies": {
+    "@storybook/addon-info": "^3.4.8",
+    "@storybook/react": "^3.4.8",
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "react-dom": "^16.4.1"
+  },
+  "peerDependencies": {
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1"
+  },
+  "dependencies": {
+    "prop-types": "^15.6.2",
+    "react": "^16.4.1"
+  }
+}
