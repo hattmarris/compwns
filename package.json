@@ -5,6 +5,7 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "babel components -d dist",
+    "build:storybook": "build-storybook -c .storybook -o .out",
     "test": "test",
     "storybook": "start-storybook -p 9001 -c .storybook"
   },
