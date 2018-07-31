@@ -1,2 +1,9 @@
+# Module related
 node_modules
+yarn-error.log
+
+# Transpiled files
 dist
+
+# Storybook static builds
+.out

@@ -6,6 +6,7 @@
   "scripts": {
     "build": "babel components -d dist",
     "build:storybook": "build-storybook -c .storybook -o .out",
+    "deploy:storybook": "storybook-to-ghpages",
     "test": "test",
     "storybook": "start-storybook -p 9001 -c .storybook"
   },
@@ -14,6 +15,7 @@
   "devDependencies": {
     "@storybook/addon-info": "^3.4.8",
     "@storybook/react": "^3.4.8",
+    "@storybook/storybook-deployer": "^2.3.0",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
     "babel-preset-env": "^1.7.0",
