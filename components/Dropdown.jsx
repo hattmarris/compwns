@@ -2,13 +2,17 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled, { css } from "styled-components";
 
-const height = 42;
+const height = 20;
 const width = 400;
 const border = "1px solid #8D97A0";
 const borderRadius = 5;
+const padding = 10;
 
 const Select = styled.div`
-  position: relative;
+  display: flex;
+  padding: ${padding}px;
+  justify-content: space-between;
+  align-items: center;
   height: ${height}px;
   width: ${width}px;
   border: ${border};
@@ -22,13 +26,10 @@ const Select = styled.div`
   `}
 `;
 
-const Caret = styled.div`
-  position: absolute;
-  right: 10px;
-  top: ${(height/2)-2}px;
-  width: 0; 
-  height: 0;
+const Selected = styled.div`
+`
 
+const Caret = styled.div`
   ${(_p, size="5px solid") => css`
     border-left: ${size} transparent;
     border-right: ${size} transparent;
@@ -37,6 +38,7 @@ const Caret = styled.div`
 `
 
 const Drop = styled.div`
+  padding: 0 ${padding}px ${padding}px ${padding}px;
   width: ${width}px;
   border: ${border};
   border-top: 0;
@@ -45,7 +47,7 @@ const Drop = styled.div`
 `
 
 const Option = styled.div`
-  padding: 10px;
+  padding: ${padding}px 0;
 `;
 
 export default class Dropdown extends React.Component {
@@ -62,10 +64,12 @@ export default class Dropdown extends React.Component {
   
   render() {
     const { open } = this.state;
+    const selected = "static value for now..."
     return (
       <div>
-        <Select open={open}>
-          <Caret onClick={() => this.setState({ open: !this.state.open })} />
+        <Select open={open} onClick={() => this.setState({ open: !open })}>
+          <Selected>{selected}</Selected>
+          <Caret />
         </Select>
         {open && this.renderDrop()}
       </div>
