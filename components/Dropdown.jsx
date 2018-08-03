@@ -7,8 +7,10 @@ const width = 400;
 const border = "1px solid #8D97A0";
 const borderRadius = 5;
 const padding = 10;
+const hoverColor = "#E7F0F7";
 
-const Select = styled.div`
+const Select = styled.button`
+  box-sizing: content-box;
   display: flex;
   padding: ${padding}px;
   justify-content: space-between;
@@ -26,8 +28,7 @@ const Select = styled.div`
   `}
 `;
 
-const Selected = styled.div`
-`
+const Selected = styled.div``
 
 const Caret = styled.div`
   ${(_p, size="5px solid") => css`
@@ -37,17 +38,27 @@ const Caret = styled.div`
   `}
 `
 
-const Drop = styled.div`
-  padding: 0 ${padding}px ${padding}px ${padding}px;
-  width: ${width}px;
+const Drop = styled.ul`
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: ${width+20}px;
   border: ${border};
   border-top: 0;
   border-bottom-left-radius: ${borderRadius}px;
   border-bottom-right-radius: ${borderRadius}px;
 `
 
-const Option = styled.div`
-  padding: ${padding}px 0;
+const Option = styled.li`
+  padding: ${padding}px;
+
+  :hover {
+    background-color: ${hoverColor};
+    :last-child {
+      border-bottom-left-radius: ${borderRadius}px;
+      border-bottom-right-radius: ${borderRadius}px;
+    }
+  }
 `;
 
 export default class Dropdown extends React.Component {
@@ -58,16 +69,17 @@ export default class Dropdown extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      open: false 
+      open: false,
+      selected: props.selected || props.options[0]
     }
+    this.toggle = this.toggle.bind(this);
   }
   
   render() {
-    const { open } = this.state;
-    const selected = "static value for now..."
+    const { open, selected } = this.state;
     return (
       <div>
-        <Select open={open} onClick={() => this.setState({ open: !open })}>
+        <Select open={open} onClick={this.toggle} role="select">
           <Selected>{selected}</Selected>
           <Caret />
         </Select>
@@ -80,8 +92,16 @@ export default class Dropdown extends React.Component {
     const { options } = this.props; 
     return (
       <Drop>
-        {options.map((o,i) => <Option key={i}>{o}</Option>)}
+        {options.map((o,i) => <Option key={i} role="option" onClick={() => this.select(o)}>{o}</Option>)}
       </Drop>
     )
+  }
+
+  select(o) {
+    return this.setState((prev, _p) => ({ ...prev, selected: o, open: false }));
+  }
+
+  toggle() {
+    return this.setState((prev, _p) => ({ ...prev, open: !prev.open }));
   }
 }
