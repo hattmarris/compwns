@@ -3,6 +3,7 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { withInfo } from '@storybook/addon-info';
 import Button from '../components/Button';
+import Dropdown from '../components/Dropdown';
 
 storiesOf('Button', module)
   .add('with text', withInfo(`
@@ -19,3 +20,8 @@ storiesOf('Button', module)
   .add('with some emoji', () => (
     <Button onClick={action('clicked')}>😀 😎 👍 💯</Button>
   ));
+
+storiesOf('Dropdown', module)
+  .add('standard', () => (
+    <Dropdown options={["a", "b", "c", "d", "e"]} />
+  ))
