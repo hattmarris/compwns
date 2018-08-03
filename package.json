@@ -5,10 +5,10 @@
   "main": "dist/index.js",
   "module": "components/index.js",
   "scripts": {
-    "build": "rm -rf dist/* && babel components -d dist",
+    "build": "rm -rf dist/* && babel components -d dist --ignore *.test.js,*.test.jsx",
     "build:storybook": "build-storybook -c .storybook -o .out",
     "deploy:storybook": "storybook-to-ghpages",
-    "test": "test",
+    "test": "jest",
     "storybook": "start-storybook -p 9001 -c .storybook"
   },
   "author": "hattmarris",
@@ -19,6 +19,7 @@
     "@storybook/storybook-deployer": "^2.3.0",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
+    "babel-plugin-styled-components": "^1.5.1",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
