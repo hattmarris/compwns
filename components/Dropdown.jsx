@@ -63,7 +63,7 @@ const Option = styled.li`
 
 export default class Dropdown extends React.Component {
   static propTypes = {
-    options: PropTypes.array
+    options: PropTypes.array.isRequired
   }
 
   constructor(props) {
